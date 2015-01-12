@@ -1,0 +1,39 @@
+<!-- pretty select id: <%=options[:id]%> -->
+<div id="ps-<%=options[:id]%>" class="prettyselect" style="margin-left: 0pt;">
+  <a href="#" id="ps-content-<%=options[:id]%>"class="content" onclick="$('ps-dropdown-<%=options[:id]%>').toggle();return false;"></a>
+  <input id="ps-<%= object+"_"+method %>" name="<%= object+"["+method+"]" %>" type="hidden" value="">
+  <div id="ps-dropdown-<%=options[:id]%>" class="dropdown" style="display: none;<%= options[:dropdown_style].to_s %>">
+    <div>
+      <ul>
+        <% if not options[:header].nil? %>
+          <div style="padding:3px;border-bottom:1px dotted black"><%= options[:header]%></div>
+        <% end %>
+        <%for choice in options[:choices]%>
+          <% 
+            if choice.class.superclass == ActiveRecord::Base
+              choice_id = choice.id
+            elsif choice.class == Hash
+              choice_id = choice[:id]
+            else
+              choice_id = choice.object_id
+            end
+          %>
+          <li>
+              <a href="#" style="<%=options[:choice_style].to_s%>" id="ps-dropdown-<%=options[:id]%>-choice-<%= choice_id %>" onclick="$('ps-content-<%=options[:id]%>').innerHTML = $$('#ps-dropdown-<%=options[:id]%>-choice-<%= choice_id %> .choice').first().innerHTML.replace(/^\s*/,'').truncate(38); $('ps-<%= object+"_"+method %>').value = $$('#ps-dropdown-<%=options[:id]%>-choice-<%= choice_id %> .choice').first().readAttribute('rel') ;$('ps-dropdown-<%=options[:id]%>').toggle();<%= options[:onselect].to_s %>;return false;"><%= render :partial => "prettyselect/"+options[:id], :locals => {:id => options[:id], :choice => choice} %></a>
+          </li>
+        <%end%>
+        <% if not options[:footer].nil? %>
+          <div style="padding:3px;border-top:1px dotted black"><%= options[:footer]%></div>
+        <% end %>
+
+      </ul>
+    </div>
+    <div class="close">
+      <a onclick="$('ps-dropdown-<%=options[:id]%>').toggle();return false;" href="#">X</a>
+    </div>
+  </div>
+</div>
+<!-- pretty select id: <%=options[:id]%> - selected value -->
+<%if not options[:selected_value].nil?%>
+  <%= javascript_tag "$('ps-content-#{options[:id]}').innerHTML = $$('#ps-dropdown-#{options[:id]}-choice-#{options[:selected_value]} .choice').first().innerHTML.replace(/^\s*/,'').truncate(38); $('ps-#{object+"_"+method}').value = $$('.choice([rel=#{options[:selected_value]}])').first().readAttribute('rel');" %>
+<%end%>

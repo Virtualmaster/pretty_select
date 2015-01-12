@@ -1,0 +1,87 @@
+.prettyselect {
+  width: 400px;
+  border: 1px solid #999999;
+}
+
+.prettyselect a {
+  color:#000000;
+  text-decoration:none;
+}
+
+.prettyselect .content {
+  background-image:url(/images/prettyselect.png);
+  background-position:right center;
+  background-repeat:no-repeat;
+  display:block;
+  height:20px;
+  padding-left: 2px;
+  padding-top:2px;
+  text-align:left;
+}
+
+.prettyselect .dropdown {
+  background-color:#FFFFFF;
+  border:1px solid #999999;
+  color:#000000;
+  position:absolute;
+  width:400px;
+  z-index:1000;
+}
+
+
+.prettyselect .dropdown ul {
+  list-style-type:none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+
+.prettyselect .dropdown li {
+  padding:0;
+  margin: 0;
+  border-bottom: 1px solid #ffffff; /*due to fucking ie6 bug*/
+}
+
+
+
+.prettyselect .dropdown ul a{
+  margin: 0;
+  padding: 0;
+  border: 0; 
+  display: block;
+}
+
+.prettyselect .dropdown a:hover{
+  background-color:#F5DF8D;
+}
+
+
+.prettyselect .dropdown .close a {
+  color:#ffffff;
+  text-decoration:none;
+}
+
+.prettyselect .dropdown .close a:hover {
+  color:#ffffff;
+  text-decoration:none;
+  background: none;
+}
+
+
+.prettyselect .dropdown .close {
+  background-color: #E82E0B;
+  border:2px solid white;
+  color:#FFFFFF;
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  height:16px;
+  margin:0;
+  padding-left:5px;
+  position:absolute;
+  right:0;
+  text-transform:uppercase;
+  top:0;
+  width:14px;
+}
