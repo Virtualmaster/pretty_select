@@ -14,6 +14,6 @@ Gem::Specification.new do |gem|
   gem.version       = PrettySelect::VERSION
   gem.platform      = Gem::Platform::RUBY
 
-  gem.add_dependency "active_support", ">= 2.3"
+  gem.add_dependency "activesupport", ">= 2.3"
   gem.add_development_dependency "bundler", ">= 1.0"
 end
