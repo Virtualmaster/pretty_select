@@ -1,7 +1,8 @@
-path = File.join(File.dirname(__FILE__), 'app', helpers)  
+path = File.join(File.dirname(__FILE__), 'app', 'helpers')  
 $LOAD_PATH << path 
 ActiveSupport::Dependencies.autoload_paths << path 
 
+require 'helpers/pretty_select_helper'
 ActionView::Base.send :include, PrettySelectHelper
 
 module PrettySelect
