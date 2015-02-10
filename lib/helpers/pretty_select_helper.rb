@@ -12,7 +12,7 @@ module PrettySelectHelper
       options.merge!(opts)
 
     if not options[:choices].nil?
-      render :file => "#{PrettySelect.root}/lib/views/collection.erb", :locals => {:object => object, :method => method, :options => options}
+      render :file => "#{PrettySelect.root}/lib/views/collection", :handlers => [:erb], :locals => {:object => object, :method => method, :options => options}
     else
       render :text => "choices must be an array"
     end
