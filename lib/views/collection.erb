@@ -35,5 +35,7 @@
 </div>
 <!-- pretty select id: <%=options[:id]%> - selected value -->
 <%if not options[:selected_value].nil?%>
-  <%= javascript_tag "$('ps-content-#{options[:id]}').innerHTML = $$('#ps-dropdown-#{options[:id]}-choice-#{options[:selected_value]} .choice').first().innerHTML.replace(/^\s*/,'').truncate(38); $('ps-#{object+"_"+method}').value = $$('.choice([rel=#{options[:selected_value]}])').first().readAttribute('rel');" %>
+    <script>
+        <%= "$('ps-content-#{options[:id]}').innerHTML = $$('#ps-dropdown-#{options[:id]}-choice-#{options[:selected_value]} .choice').first().innerHTML.replace(/^\s*/,'').truncate(38); $('ps-#{object+"_"+method}').value = $$('.choice([rel=#{options[:selected_value]}])').first().readAttribute('rel');".html_safe %>
+    </script>
 <%end%>
