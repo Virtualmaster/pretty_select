@@ -1,7 +1,7 @@
 <!-- pretty select id: <%=options[:id]%> -->
 <div id="ps-<%=options[:id]%>" class="prettyselect" style="margin-left: 0pt;">
   <a href="#" id="ps-content-<%=options[:id]%>"class="content" onclick="$('#ps-dropdown-<%=options[:id]%>').toggle();return false;"></a>
-  <input id="ps-<%= object+"_"+method %>" name="<%= object+"["+method+"]" %>" type="hidden" value="">
+  <input id="ps-<%= object+"_"+method %>" name="<%= object+"["+method+"]" %>" type="hidden" value="<%= options[:selected_value].present? ? options[:selected_value] : nil %>">
   <div id="ps-dropdown-<%=options[:id]%>" class="dropdown" style="display: none;<%= options[:dropdown_style].to_s %>">
     <div>
       <ul>
