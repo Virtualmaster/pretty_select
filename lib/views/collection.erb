@@ -1,6 +1,6 @@
 <!-- pretty select id: <%=options[:id]%> -->
 <div id="ps-<%=options[:id]%>" class="prettyselect" style="margin-left: 0pt;">
-  <a href="#" id="ps-content-<%=options[:id]%>"class="content" onclick="$('ps-dropdown-<%=options[:id]%>').toggle();return false;"></a>
+  <a href="#" id="ps-content-<%=options[:id]%>"class="content" onclick="$('#ps-dropdown-<%=options[:id]%>').toggle();return false;"></a>
   <input id="ps-<%= object+"_"+method %>" name="<%= object+"["+method+"]" %>" type="hidden" value="">
   <div id="ps-dropdown-<%=options[:id]%>" class="dropdown" style="display: none;<%= options[:dropdown_style].to_s %>">
     <div>
@@ -19,7 +19,7 @@
             end
           %>
           <li>
-              <a href="#" style="<%=options[:choice_style].to_s%>" id="ps-dropdown-<%=options[:id]%>-choice-<%= choice_id %>" onclick="$('ps-content-<%=options[:id]%>').innerHTML = $$('#ps-dropdown-<%=options[:id]%>-choice-<%= choice_id %> .choice').first().innerHTML.replace(/^\s*/,'').truncate(38); $('ps-<%= object+"_"+method %>').value = $$('#ps-dropdown-<%=options[:id]%>-choice-<%= choice_id %> .choice').first().readAttribute('rel') ;$('ps-dropdown-<%=options[:id]%>').toggle();<%= options[:onselect].to_s %>;return false;"><%= render :partial => "prettyselect/"+options[:id], :locals => {:id => options[:id], :choice => choice} %></a>
+              <a href="#" style="<%=options[:choice_style].to_s%>" id="ps-dropdown-<%=options[:id]%>-choice-<%= choice_id %>" onclick="$('#ps-content-<%=options[:id]%>').html( $('#ps-dropdown-<%=options[:id]%>-choice-<%= choice_id %> .choice').first().html().replace(/^\s*/,'').substring(0, 38) ); $('#ps-<%= object+"_"+method %>').val( $('#ps-dropdown-<%=options[:id]%>-choice-<%= choice_id %> .choice').first().attr('rel') );$('#ps-dropdown-<%=options[:id]%>').toggle();<%= options[:onselect].to_s %>;return false;"><%= render :partial => "prettyselect/"+options[:id], :locals => {:id => options[:id], :choice => choice} %></a>
           </li>
         <%end%>
         <% if not options[:footer].nil? %>
@@ -36,6 +36,6 @@
 <!-- pretty select id: <%=options[:id]%> - selected value -->
 <%if not options[:selected_value].nil?%>
     <script>
-        <%= "$('ps-content-#{options[:id]}').innerHTML = $$('#ps-dropdown-#{options[:id]}-choice-#{options[:selected_value]} .choice').first().innerHTML.replace(/^\s*/,'').truncate(38); $('ps-#{object+"_"+method}').value = $$('.choice([rel=#{options[:selected_value]}])').first().readAttribute('rel');".html_safe %>
+        <%= "$('#ps-content-#{options[:id]}').html( $('#ps-dropdown-#{options[:id]}-choice-#{options[:selected_value]} .choice').first().html().replace(/^\s*/,'').substring(0, 38) ); $('ps-#{object+"_"+method}').val( $('.choice[rel=#{options[:selected_value]}]').first().attr('rel') );".html_safe %>
     </script>
 <%end%>
