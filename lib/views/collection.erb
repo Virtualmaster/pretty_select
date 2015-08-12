@@ -10,7 +10,7 @@
         <% end %>
         <%for choice in options[:choices]%>
           <% 
-            if choice.class.superclass == ActiveRecord::Base
+            if choice.class < ActiveRecord::Base
               choice_id = choice.id
             elsif choice.class == Hash
               choice_id = choice[:id]
